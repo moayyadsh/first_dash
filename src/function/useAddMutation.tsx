@@ -18,7 +18,17 @@ function useAddMutation(
       }
     });
     return data;
-  },)
+  },
+{
+  onSuccess(data) {
+    console.log(data);
+    
+  },
+  onError(error, variables, context) {
+    
+  },
+}
+)
 }
 
 export default useAddMutation;

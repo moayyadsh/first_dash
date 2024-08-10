@@ -10,55 +10,55 @@ import { initialValues, loginSchema } from '../pages/teacher/FormUtil';
 
 function LoginPage() {
     const navigate = useNavigate()
-    const {AuthState,setAuthState} = useAuthState()
-    const[login,setLogin]=useState([])
+    const { AuthState, setAuthState } = useAuthState()
+    const [login, setLogin] = useState([])
     const onSubmit = () => {
 
     };
-    const { mutate: logIn ,data,isSuccess, isError} = useLogin();
+    const { mutate: logIn, data, isSuccess, isError } = useLogin();
 
 
-useEffect(() => {
-    if (isSuccess) {
-        console.log(data.token);
-        
-        localStorage.setItem('token', data.token);
-        console.log(localStorage);
-        setAuthState(
-            {
-                token:data.token
-            }
-        )
+    useEffect(() => {
+        if (isSuccess) {
+            console.log(data.token);
 
-        navigate('/App'); 
-    }
-    if (isError) {
-      
-        console.error(isError);
-    }
-}, [isSuccess, isError, data, navigate, isError]);
+            localStorage.setItem('token', data.token);
+            console.log(localStorage);
+            setAuthState(
+                {
+                    token: data.token
+                }
+            )
+
+            navigate('/App');
+        }
+        if (isError) {
+
+            console.error(isError);
+        }
+    }, [isSuccess, isError, data, navigate, isError]);
     console.log(data?.token);
-     
+
     localStorage.setItem('myData', data?.token);
 
-    
-    const onLogIn=()=>{
+
+    const onLogIn = () => {
         logIn({
-            username:values.username,
-            password:values.password
-            
+            username: values.username,
+            password: values.password
+
         })
-      
+
     }
 
-    
-
- 
 
 
-      
-    const { values, errors,touched, handleBlur, handleChange, handleSubmit } = useFormik({
-        initialValues:initialValues,
+
+
+
+
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+        initialValues: initialValues,
         validationSchema: loginSchema,
         onSubmit,
     })
@@ -66,33 +66,33 @@ useEffect(() => {
         <div className='Log-in'>
             <h1 className='log'>Login... </h1>
             <Form.Item
-            
+
                 name="usename" label="username"
-               validateStatus={touched.username && errors.username ? 'error' : ''}
+                validateStatus={touched.username && errors.username ? 'error' : ''}
                 help={touched.username && errors.username ? errors.username : ''}
-                >
-                    <Input
-                        type='text'
-                        name='username'
-                        value={values.username}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        
-                    />
+            >
+                <Input
+                    type='text'
+                    name='username'
+                    value={values.username}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+
+                />
             </Form.Item>
             <Form.Item
                 name="password" label="password"
-                    validateStatus={touched.password && errors.password ? 'error' : ''}
-                    help={touched.password && errors.password ? errors.password : ''}
-                >
-                    <Input
-                        type='password'
-                        name='password'
-                        value={values.password}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        className='password'
-                    />
+                validateStatus={touched.password && errors.password ? 'error' : ''}
+                help={touched.password && errors.password ? errors.password : ''}
+            >
+                <Input
+                    type='password'
+                    name='password'
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className='password'
+                />
             </Form.Item>
             <Button className='configBtn' onClick={onLogIn}>Login</Button>
 

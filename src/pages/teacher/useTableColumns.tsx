@@ -7,7 +7,7 @@ import ModalComponent from './modal/ModalForm';
 
 
 function useTableColumns() {
-
+    const { toggleModal } = useModalStore();
 
     const columns = [
         {
@@ -34,7 +34,7 @@ function useTableColumns() {
             key: '5',
             title: 'Action',
             render: () => {
-                const { toggleModal } = useModalStore();
+                
               return <>
                 <EditOutlined
                 onClick={toggleModal}

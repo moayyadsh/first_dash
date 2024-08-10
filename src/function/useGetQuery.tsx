@@ -20,7 +20,9 @@ function useGetQuery(
        });
       return response?.data ?? [];
     },
-  });
+    
+  }
+);
 }
 
 export default useGetQuery;
